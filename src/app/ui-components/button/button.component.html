@@ -1,0 +1,9 @@
+<button
+  [class]="btClasses"
+  type="button"
+  (click)="handleButtonClick()"
+  [type]="type"
+  [disabled]="disabled === 'true' ? true : false"
+  class="btn-color-light">
+  <ng-content></ng-content>
+</button>

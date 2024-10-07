@@ -1,0 +1,125 @@
+
+<div id="values" class="values section applications" style="height: 100%; padding-top: 20px; overflow-y: auto;">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Payment List</h2>
+    </div><!-- End Section Title -->
+    <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+          <div class="mx-auto">
+              
+    
+            <nav>
+              <div class=" nav nav-pills flex-column flex-sm-row" id="nav-tab" role="tablist">
+                <a *ngIf="showPendingTab" class="flex-sm-fill text-sm-center nav-link" [ngClass]="{'active': selectedTab === 'pending'}" (click)="selectTab('pending')">Pending</a>
+                <a *ngIf="showApprovalTab" class="flex-sm-fill text-sm-center nav-link" [ngClass]="{'active': selectedTab === 'approval'}" (click)="selectTab('approval')">Approved</a>
+                <a *ngIf="showRejectTab" class="flex-sm-fill text-sm-center nav-link" [ngClass]="{'active': selectedTab === 'reject'}" (click)="selectTab('reject')">Rejected</a>
+                <a *ngIf="showSuccessTab" class="flex-sm-fill text-sm-center nav-link" [ngClass]="{'active': selectedTab === 'success'}" (click)="selectTab('success')">Sent License</a>
+              </div>
+            </nav>
+          
+            <!-- Tab content -->
+            <div class="tab-content mt-3">
+              <div class="row">
+                  <form (ngSubmit)="applyFilter()">
+                      <div class="row">
+                        <!-- From Date Input -->
+                        <div class="col-md-3">
+                          <label for="fromDate">From Date:</label>
+                          <input type="date" class="form-control" id="fromDate" [(ngModel)]="filter.fromDate" name="fromDate">
+                        </div>
+                  
+                        <!-- To Date Input -->
+                        <div class="col-md-3">
+                          <label for="toDate">To Date:</label>
+                          <input type="date" class="form-control" id="toDate" [(ngModel)]="filter.toDate" name="toDate">
+                        </div>
+                  
+                        <!-- Keyword Input -->
+                        <div class="col-md-3">
+                          <label for="keyword">Keyword:</label>
+                          <input type="text" class="form-control" id="keyword" [(ngModel)]="filter.keyword" name="keyword">
+                        </div>
+                  
+                        <!-- Search Button -->
+                        <div class="col-md-3 align-self-end">
+                          <button type="submit" class="btn btn-primary btn-block">Search</button>
+                        </div>
+                      </div>
+                    </form>
+              </div>
+              <ngx-datatable
+                  style="margin-top: 20px"
+                  #dataTable
+                  [rows]="rows"
+                  [messages]="{
+                    emptyMessage: 'No Data Found',
+                    totalMessage: 'Total'
+                  }"
+                  [rowHeight]="'auto'"
+                  [externalPaging]="true"
+                  [columnMode]="'force'"
+                  [limit]="10"
+                  [headerHeight]="40"
+                  [footerHeight]="50"
+                  [scrollbarH]="true"
+                  [count]="total"
+                  class="tailwind-datatable"
+                  (page)="handlePageChange($event)"
+                >
+                  <ngx-datatable-column name="Purchased Date" prop="createdOn">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row.createdOn + 'Z' | date : "dd-MM-yyyy HH:mm:ss" }}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Transaction Number" prop="transactionNumber">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row.transactionNumber }}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Name" prop="fullName">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row.customer.name }}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Email" prop="email">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row.customer.email }}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Product Name" prop="name">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row.name }}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  
+                  <ngx-datatable-column *ngIf="selectedTab != 'reject'" name="Action">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      <button (click)="viewDetail(row.id)"
+                        type="button"
+                        class="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-2 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2"
+                      >
+                       View Detail
+                      </button>
+                    </ng-template>
+                  </ngx-datatable-column>
+                </ngx-datatable>
+              <!-- <div class="tab-pane fade" [ngClass]="{'show active': selectedTab === 'pending'}">
+                  
+              </div>
+              <div class="tab-pane fade" [ngClass]="{'show active': selectedTab === 'approval'}">
+                <h3>Profile Content</h3>
+                <p>This is the content for the Profile tab.</p>
+              </div>
+              <div class="tab-pane fade" [ngClass]="{'show active': selectedTab === 'success'}">
+                <h3>Contact Content</h3>
+                <p>This is the content for the Contact tab.</p>
+              </div> -->
+            </div>
+            
+            <div class="relative overflow-x-auto mt-5"></div>
+          </div>
+        </div>
+      </section>
+</div>
+  

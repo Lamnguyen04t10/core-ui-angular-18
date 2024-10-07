@@ -1,0 +1,72 @@
+<div *ngIf="receiptData" id="receipt" class="receipt">
+    <div class="header" style="margin-top: 20px;">
+      <img src="{{receiptData.merchant.logo}}" alt="Logo">
+      <div class="booking-details">
+        <div>Reference No: {{receiptData.referenceNo}}</div>
+        <div>Message Id: {{receiptData.messageId}}</div>
+        <div>Transaction Date: {{receiptData.paidDate}}</div>
+      </div>
+    </div>
+    <div class="header-row">
+        <div class="payment-details">
+            <rfr-header-text>Payment details</rfr-header-text>
+            <rfr-text>{{receiptData.merchant.name}}</rfr-text>
+            <rfr-text>{{receiptData.merchant.address}}</rfr-text>
+          </div>
+          <div class="customer-details">
+            <rfr-header-text>Customer Details</rfr-header-text>
+            <p><i class="fa fa-user"></i>{{receiptData.customer.name}}</p>
+            <p><i class="fa fa-envelope"></i>{{receiptData.customer.email}}</p>
+            <p><i class="fa fa-phone"></i>{{receiptData.customer.phone}}</p>
+          </div>
+    </div>
+    
+    <div class="payment-summary">
+      <h2>Payment details</h2>
+      <div class="summary-row">
+        <div>Transaction Status</div>
+        <div class="price-details">{{receiptData.status}}</div>
+      </div>
+      <div class="summary-row">
+        <div>Bank Name</div>
+        <div class="price-details">{{receiptData.bankName}}</div>
+      </div>
+      <div class="summary-row">
+        <div>Item Name</div>
+        <div class="price-details">{{receiptData.itemName}}</div>
+      </div>
+      <div class="summary-row">
+        <div>Total amount</div>
+        <div class="price-details">MYR {{receiptData.amount | currency:'RM ':'symbol': '1.2-2'}}</div>
+      </div>
+      <div class="summary-row">
+        <div>Payment method</div>
+        <div class="price-details">{{receiptData.paymentType}}</div>
+      </div>
+    </div>
+    <div class="payment-method">
+      <h2 class="price-details" style="float: right;">Total amount paid: {{receiptData.amount | currency:'RM ':'symbol': '1.2-2'}}</h2>
+    </div>
+</div>
+<div class="download">
+    <div class="row mt-5">
+        <div class="col-6">
+            <rfr-button
+            type="button"
+            variant="outline"
+            color="danger"
+            class="w-100"
+            (click)="backToHome()"
+            >
+            Return
+            </rfr-button>
+        </div>
+        <div class="col-6">
+            <rfr-button type="button" color="primary" class="w-100" (click)="download()">
+            Download
+            </rfr-button>
+        </div>
+    </div>
+    <br>
+</div>
+

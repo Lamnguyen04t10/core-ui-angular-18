@@ -1,0 +1,9 @@
+<ng-container *ngFor="let option of options">
+  <rfr-radio-button
+    [name]="name"
+    [value]="option.value"
+    [label]="option.label"
+    [checked]="value === option.value"
+    (change)="onRadioChange($event)">
+  </rfr-radio-button>
+</ng-container>

@@ -1,0 +1,39 @@
+@import "bootstrap/scss/functions";
+@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/utilities";
+
+.rfr-card {
+  background-color: #F7F7F7;
+  padding: 8px;
+  position: relative;
+
+  &_border {
+    border: 1px solid $primary;
+  }
+
+  &_border-none {
+    border: none;
+  }
+}
+
+.card-outline {
+  background-color: white;
+}
+
+.rounded-sm {
+  border-radius: 6px;
+}
+
+.rounded-md {
+  border-radius: 12px;
+}
+
+.rounded-lg {}
+
+.active {
+  border-color: $blue;
+   /* Change to your desired color */
+   box-shadow: 0 4px 15px rgba(13, 110, 253, 0.5);
+  /* Optional: add a box shadow */
+}

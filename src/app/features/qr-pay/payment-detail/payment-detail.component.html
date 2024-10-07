@@ -1,0 +1,97 @@
+<div id="values" class="values section applications" style="height: 100%; padding-top: 20px; overflow-y: auto;">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Payment Detail</h2>
+    </div><!-- End Section Title -->
+    <div class="card">
+        <div class="row">
+          <div class="col-lg-12 align-self-end align-self-end">
+            <button *ngIf="data.status == 'Pending'" (click)="verifyPurchase('Approved')"
+              class="btn btn-primary btn-block" style="float: right; margin-right: 10px;">Approve</button>
+            <button *ngIf="data.status == 'Pending'" (click)="verifyPurchase('Rejected')"
+              class="btn btn-danger btn-block" style="float: right; margin-right: 10px;">Reject</button>
+            <button (click)="back()" class="btn btn-secondary btn-block"
+              style="float: right; margin-right: 10px;">Back</button>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <div class="card" style="padding: 40px 20px; border: none; height: 100%;" *ngIf="data.customer">
+              <div class="flow-root">
+                <div class="-my-3 divide-y divide-gray-200 dark:divide-gray-800">
+                  <dl class="flex items-center justify-between gap-4 py-3">
+                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
+                      Created On
+                    </dt>
+                    <dd class="text-base font-medium text-gray-900 dark:text-white">
+                      {{ data.createdOn + 'Z' | date : "dd-MM-yyyy HH:mm:ss" }}
+                    </dd>
+                  </dl>
+                  <dl class="flex items-center justify-between gap-4 py-3">
+                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
+                      Customer Name
+                    </dt>
+                    <dd class="text-base font-medium text-gray-900 dark:text-white">
+                      {{ data.customer.name}}
+                    </dd>
+                  </dl>
+  
+                  <dl class="flex items-center justify-between gap-4 py-3">
+                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
+                      Customer Email
+                    </dt>
+                    <dd class="text-base font-medium text-gray-900 dark:text-white">
+                      {{ data.customer.email}}
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="card" style="padding: 40px 20px; border: none; height: 100%;">
+              <div class="flow-root">
+                <div class="-my-3 divide-y divide-gray-200 dark:divide-gray-800">
+                  <dl class="flex items-center justify-between gap-4 py-3">
+                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
+                      Transaction Number
+                    </dt>
+                    <dd class="text-base font-medium text-gray-900 dark:text-white">
+                      {{ data.transactionNumber}}
+                    </dd>
+                  </dl>
+                  <dl class="flex items-center justify-between gap-4 py-3">
+                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
+                      Item Name
+                    </dt>
+                    <dd class="text-base font-medium text-gray-900 dark:text-white">
+                      {{ data.name}}
+                    </dd>
+                  </dl>
+                  <dl class="flex items-center justify-between gap-4 py-3">
+                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
+                      Total
+                    </dt>
+                    <dd class="text-base font-medium text-gray-900 dark:text-white">
+                      {{data.currencyCode}} {{ data.amount | currency : " " : "symbol" : "1.2-2" }}
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mx-auto" *ngIf="data.document">
+          <div class="container section-title" data-aos="fade-up">
+            <br>
+            <h2>Proof of Payment</h2>
+          </div><!-- End Section Title -->
+          <div style="height: auto; min-height: 1000px; width: 100%; min-width: 500px; display: flex; justify-content: center;">
+            <pdf-viewer *ngIf="data.document.docType =='pdf'" [src]="data.document.file" [fit-to-page]="true"
+            [autoresize]="false" [original-size]='false'  style="flex: 1;"></pdf-viewer>
+            <img *ngIf="data.document.docType !=='pdf'" [src]="data.document.file">
+          </div>
+        </div>
+    </div>
+</div>

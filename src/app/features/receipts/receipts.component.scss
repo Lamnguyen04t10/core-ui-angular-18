@@ -1,0 +1,94 @@
+.receipt {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+  
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+  
+      img {
+        max-height: 50px;
+      }
+  
+      .booking-details {
+        text-align: right;
+  
+        div {
+          font-size: 14px;
+        }
+      }
+    }
+  
+    h2 {
+      margin-top: 0;
+      font-size: 18px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+  
+    .payment-details,
+    .customer-details,
+    .guests,
+    .payment-summary,
+    .payment-method {
+      margin-bottom: 20px;
+  
+      p {
+        margin: 5px 0;
+      }
+    }
+
+    .payment-details,
+    .customer-details {
+        div {
+            width: 50%;
+        }
+    }
+  
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+  
+      div {
+        width: 50%;
+      }
+
+      .price-details {
+        text-align: right;
+  
+        div {
+          font-size: 14px;
+        }
+      }
+    }
+  
+    .fa {
+      margin-right: 5px;
+    }
+
+    .header-row {
+        display: flex;
+        justify-content: space-between;
+    
+        div {
+          width: 50%;
+        }
+      }
+  }
+
+  .download {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div {
+        min-width: 400px;
+    }
+  }

@@ -1,0 +1,15 @@
+<div class="modal-body">
+  <div class="row p-2">
+    <div class="col-6">
+      <h6 style="text-transform: uppercase;">{{ header }}</h6>
+    </div>
+    <div class="col-6">
+      <div style="width: 100%; display: flex; justify-content: end;">
+        <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="component" style="padding: 12px;">
+    <ng-template [ngComponentOutlet]="component"></ng-template>
+  </div>
+</div>

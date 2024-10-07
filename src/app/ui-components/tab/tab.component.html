@@ -1,0 +1,15 @@
+<nav>
+  <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+    <button
+      *ngFor="let tabItem of tabItems"
+      class="nav-link rfr-tab"
+      [class.active]="tabItem.active"
+      type="button"
+      role="tab"
+      (click)="selectTab(tabItem)"
+    >
+      <h6 class="text-uppercase">{{ tabItem.title }}</h6>
+    </button>
+  </div>
+  <ng-content></ng-content>
+</nav>

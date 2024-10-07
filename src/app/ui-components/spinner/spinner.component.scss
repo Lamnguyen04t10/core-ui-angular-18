@@ -1,0 +1,18 @@
+.rfr-snipper-loading {
+  width: 100%;
+  /* Full width of the content */
+  height: 100%;
+  /* Full height of the content */
+  position: fixed;
+  /* Fixed position to cover the entire viewport */
+  background: red;
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent background */
+  z-index: 9999;
+}

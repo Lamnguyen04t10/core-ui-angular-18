@@ -1,0 +1,97 @@
+<div class="container mt-5">
+  <rfr-tab [(ngModel)]="selectedTab">
+    <rfr-tab-item title="Thank You" value="1">
+      <div
+        class="tab-pane fade active show"
+        id="thank-you"
+        role="tabpanel"
+        aria-labelledby="thank-you-tab"
+      >
+        <div *ngIf="data" class="row">
+          <div *ngIf="data.statusCode == '1'" class="col-md-5 col-12 border-md-right text-center p-4">
+            <h4>Payment Successful!</h4>
+            <img src="../../../assets/checksucess.jpg" alt="" width="100" />
+            <rfr-text style="margin-left: 10px;"
+              >Thank you. Your payment transaction has been accepted</rfr-text
+            >
+          </div>
+          <div *ngIf="data.statusCode != '1'" class="col-md-5 col-12 border-md-right text-center p-4">
+            <h4>Payment Failure!</h4>
+            <img src="../../../assets/cancel.png" alt="" width="100" />
+            <rfr-text style="margin-left: 10px;"
+              >Your payment transaction has been failed</rfr-text
+            >
+          </div>
+          <div class="col-md-7 col-12 py-4 px-5">
+            <h4>Transaction Summary</h4>
+            <div class="row">
+              <div class="col-4">
+                <h6>Reference No</h6>
+              </div>
+              <div class="col-8"><rfr-text>{{data.referenceNo}}</rfr-text></div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <h6>Payment Type</h6>
+              </div>
+              <div class="col-8"><rfr-text>{{data.paymentType}}</rfr-text></div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <h6>Transaction ID</h6>
+              </div>
+              <div class="col-8"><rfr-text>{{data.transactionId}}</rfr-text></div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <h6>Buyer Bank Name</h6>
+              </div>
+              <div class="col-8"><rfr-text>{{data.bankName}}</rfr-text></div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <h6>Amount (RM)</h6>
+              </div>
+              <div class="col-8"><rfr-text>{{data.amount | currency:'RM ':'symbol': '1.2-2'}}</rfr-text></div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <h6>Transaction Date</h6>
+              </div>
+              <div class="col-8"><rfr-text>{{data.transactionDate}}</rfr-text></div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <h6>Transaction Status</h6>
+              </div>
+              <div class="col-8"><rfr-text>{{data.transactionStatus}}</rfr-text></div>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-6">
+              <rfr-button
+                type="button"
+                variant="outline"
+                color="danger"
+                class="w-100"
+                (click)="backToHome()"
+              >
+                Back to home
+              </rfr-button>
+            </div>
+            <div class="col-6">
+              <rfr-button *ngIf="data.statusCode == '1'" type="button" color="primary" class="w-100" (click)="printReceipt()">
+                Print Receipt
+              </rfr-button>
+              <rfr-button *ngIf="data.statusCode !== '1'" type="button" color="primary" class="w-100" (click)="backToHome()">
+                OK
+              </rfr-button>
+            </div>
+          </div>
+        </div>
+       
+        <br>
+      </div>
+    </rfr-tab-item>
+  </rfr-tab>
+</div>
